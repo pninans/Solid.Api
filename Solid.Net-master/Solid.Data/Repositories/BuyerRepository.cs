@@ -23,19 +23,19 @@ namespace Solid.Data.Repositories
         }
         public void DeleteBuyer(int id)
         {
-            _context.BuyerList.Remove(_context.BuyerList.Find(u => u.Id == id));
+            _context.BuyerList.Remove(_context.BuyerList.ToList().Find(u => u.Id == id));
         }
         public Buyer GetById(int id)
         {
-            return _context.BuyerList.Find(u => u.Id == id);
+            return _context.BuyerList.ToList().Find(u => u.Id == id);
         }
-        public List<Buyer> GetBuyers()
+        public IEnumerable<Buyer> GetBuyers()
         {
             return _context.BuyerList;
         }
         public Buyer UpdateBuyer(int id, Buyer buyer)
         {
-            var updateBuyer = _context.BuyerList.Find(u => u.Id == id);
+            var updateBuyer = _context.BuyerList.ToList().Find(u => u.Id == id);
             if (updateBuyer != null)
             {
                 updateBuyer.Name = buyer.Name;
@@ -46,5 +46,6 @@ namespace Solid.Data.Repositories
             return null;
         }
 
+
     }
-    }
+}

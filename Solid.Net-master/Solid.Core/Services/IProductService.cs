@@ -9,7 +9,7 @@ namespace Solid.Core.Services
 {
     public interface IProductService
     {
-        List<Product> GetProducts();
+        IEnumerable<Product> GetProducts();
 
         Product GetById(int id);
         void AddProduct(Product product);

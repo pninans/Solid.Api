@@ -18,7 +18,7 @@ namespace Solid.Service
             _productRepository = productRepository;
         }
 
-        public List<Product> GetProducts()
+        public IEnumerable<Product> GetProducts()
         {
             return _productRepository.GetProducts();
         }

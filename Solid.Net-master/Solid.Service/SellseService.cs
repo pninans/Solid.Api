@@ -18,7 +18,7 @@ namespace Solid.Service
             _sellerRepository = selllerRepository;
         }
 
-        public List<Seller> GetSellers()
+        public IEnumerable<Seller> GetSellers()
         {
             return _sellerRepository.GetSellers();
         }
@@ -30,17 +30,17 @@ namespace Solid.Service
         public void AddSeller(Seller seller)
         {
             seller = _sellerRepository.AddSeller(seller);
-            
+
         }
         public void UpdateSeller(int id, Seller seller)
         {
-            seller= _sellerRepository.UpdateSeller(id, seller);          
+            seller = _sellerRepository.UpdateSeller(id, seller);
         }
-        public  void DeleteSeller(int id)
+        public void DeleteSeller(int id)
         {
             _sellerRepository.DeleteSeller(id);
         }
 
-       
+
     }
 }

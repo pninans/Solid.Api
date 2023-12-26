@@ -9,7 +9,7 @@ namespace Solid.Core.Services
 {
     public interface ISellerService
     {
-        List<Seller> GetSellers();
+        IEnumerable<Seller> GetSellers();
 
         Seller GetById(int id);
         void AddSeller(Seller seller);

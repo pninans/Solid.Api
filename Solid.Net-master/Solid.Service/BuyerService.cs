@@ -20,7 +20,7 @@ namespace Solid.Service
             _buyerRepository = buyerRepository;
         }
 
-        public List<Buyer> GetBuyers()
+        public IEnumerable<Buyer> GetBuyers()
         {
             return _buyerRepository.GetBuyers();
         }

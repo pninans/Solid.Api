@@ -9,7 +9,7 @@ namespace Solid.Core.Repositories
 {
     public interface ISellerRepository
     {
-        List<Seller> GetSellers();
+        IEnumerable<Seller> GetSellers();
         Seller GetById(int id);
         Seller AddSeller(Seller seller);
         Seller UpdateSeller(int id, Seller seller);

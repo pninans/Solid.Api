@@ -9,7 +9,7 @@ namespace Solid.Core.Services
 {
     public interface IBuyerService
     {
-        List<Buyer> GetBuyers();
+        IEnumerable<Buyer> GetBuyers();
 
         Buyer GetById(int id);
         void AddBuyer(Buyer buyer);

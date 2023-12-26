@@ -23,19 +23,19 @@ namespace Solid.Data.Repositories
         }
         public void DeleteProduct(int id)
         {
-            _context.ProductList.Remove(_context.ProductList.Find(u => u.Id == id));
+            _context.ProductList.Remove(_context.ProductList.ToList().Find(u => u.Id == id));
         }
         public Product GetById(int id)
         {
-            return _context.ProductList.Find(u => u.Id == id);
+            return _context.ProductList.ToList().Find(u => u.Id == id);
         }
-        public List<Product> GetProducts()
+        public IEnumerable<Product> GetProducts()
         {
             return _context.ProductList;
         }
         public Product UpdateProduct(int id, Product product)
         {
-            var updateProduct = _context.ProductList.Find(u => u.Id == id);
+            var updateProduct = _context.ProductList.ToList().Find(u => u.Id == id);
             if (updateProduct != null)
             {
                 updateProduct.Name = product.Name;
