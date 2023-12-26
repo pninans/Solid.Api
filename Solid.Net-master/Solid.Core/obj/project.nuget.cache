@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8Bf9ogzNYqZPsf92dMC8aVwiD5iWmo1SQFrfyFZUECYH4uN0ooV+t0eg8K8S+MPWdOICg68AgnL0Q2fHKiKt4A==",
+  "dgSpecHash": "oUY1kjF/AHKnoq3mtGCASStMMY8ELuS2pzsC5hPa/fXQ4+ODM1WRzbEgOKDqj1hSk56KEWnOjLm1Crh7or3Pkg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\user1\\Desktop\\Solid.Net-master\\Solid.Core\\Solid.Core.csproj",
+  "projectFilePath": "C:\\Users\\user1\\Documents\\GitHub\\Solid.Api\\Solid.Net-master\\Solid.Core\\Solid.Core.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
