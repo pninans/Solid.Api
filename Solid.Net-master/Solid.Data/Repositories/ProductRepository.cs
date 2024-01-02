@@ -19,11 +19,13 @@ namespace Solid.Data.Repositories
         public Product AddProduct(Product product)
         {
             _context.ProductList.Add(product);
+            _context.SaveChanges();
             return product;
         }
         public void DeleteProduct(int id)
         {
             _context.ProductList.Remove(_context.ProductList.ToList().Find(u => u.Id == id));
+            _context.SaveChanges();
         }
         public Product GetById(int id)
         {
@@ -43,6 +45,7 @@ namespace Solid.Data.Repositories
                 updateProduct.Status = product.Status;
                 return updateProduct;
             }
+            _context.SaveChanges();
             return null;
         }
     }

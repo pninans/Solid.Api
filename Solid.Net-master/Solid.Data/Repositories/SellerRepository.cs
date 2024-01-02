@@ -19,11 +19,13 @@ namespace Solid.Data.Repositories
         public Seller AddSeller(Seller seller)
         {
             _context.SellerList.Add(seller);
+            _context.SaveChanges();
             return seller;
         }
         public void DeleteSeller(int id)
         {
             _context.SellerList.Remove(_context.SellerList.ToList().Find(u => u.Id == id));
+            _context.SaveChanges();
         }
         public Seller GetById(int id)
         {
@@ -43,6 +45,7 @@ namespace Solid.Data.Repositories
                 updateSeller.Pr = seller.Pr;
                 return updateSeller;
             }
+            _context.SaveChanges();
             return null;
         }
 
