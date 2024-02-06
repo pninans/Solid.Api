@@ -10,7 +10,10 @@ namespace Solid.Core.Entities
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public Product Pr { get; set; }
+      
+        public Product Product { get; set; }
         public string Phone { get; set; }
+     
+        public Buyer Buyer { get; set; }
     }
 }

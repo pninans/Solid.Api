@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Solid.Data;
 
@@ -10,9 +11,10 @@ using Solid.Data;
 namespace Solid.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20240127210831_secind")]
+    partial class secind
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -37,9 +39,15 @@ namespace Solid.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("SellerId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.ToTable("BuyerList", (string)null);
+                    b.HasIndex("SellerId")
+                        .IsUnique();
+
+                    b.ToTable("BuyerList");
                 });
 
             modelBuilder.Entity("Solid.Core.Entities.Product", b =>
@@ -49,9 +57,6 @@ namespace Solid.Data.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("BuyerId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -68,13 +73,10 @@ namespace Solid.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BuyerId")
-                        .IsUnique();
-
                     b.HasIndex("SellerId")
                         .IsUnique();
 
-                    b.ToTable("ProductList", (string)null);
+                    b.ToTable("ProductList");
                 });
 
             modelBuilder.Entity("Solid.Core.Entities.Seller", b =>
@@ -95,36 +97,36 @@ namespace Solid.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("SellerList", (string)null);
+                    b.ToTable("SellerList");
+                });
+
+            modelBuilder.Entity("Solid.Core.Entities.Buyer", b =>
+                {
+                    b.HasOne("Solid.Core.Entities.Seller", "Seller")
+                        .WithOne("Buyer")
+                        .HasForeignKey("Solid.Core.Entities.Buyer", "SellerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Seller");
                 });
 
             modelBuilder.Entity("Solid.Core.Entities.Product", b =>
                 {
-                    b.HasOne("Solid.Core.Entities.Buyer", "Buyer")
-                        .WithOne("Product")
-                        .HasForeignKey("Solid.Core.Entities.Product", "BuyerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Solid.Core.Entities.Seller", "Seller")
                         .WithOne("Product")
                         .HasForeignKey("Solid.Core.Entities.Product", "SellerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Buyer");
-
                     b.Navigation("Seller");
-                });
-
-            modelBuilder.Entity("Solid.Core.Entities.Buyer", b =>
-                {
-                    b.Navigation("Product")
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Solid.Core.Entities.Seller", b =>
                 {
+                    b.Navigation("Buyer")
+                        .IsRequired();
+
                     b.Navigation("Product")
                         .IsRequired();
                 });

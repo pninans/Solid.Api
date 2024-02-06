@@ -11,8 +11,8 @@ using Solid.Data;
 namespace Solid.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20231226143654_hand2")]
-    partial class hand2
+    [Migration("20240127213241_second")]
+    partial class second
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -39,9 +39,6 @@ namespace Solid.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.ToTable("BuyerList");
@@ -55,6 +52,9 @@ namespace Solid.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("BuyerId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -62,10 +62,19 @@ namespace Solid.Data.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
+                    b.Property<int>("SellerId")
+                        .HasColumnType("int");
+
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("BuyerId")
+                        .IsUnique();
+
+                    b.HasIndex("SellerId")
+                        .IsUnique();
 
                     b.ToTable("ProductList");
                 });
@@ -86,25 +95,40 @@ namespace Solid.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PrId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("PrId");
 
                     b.ToTable("SellerList");
                 });
 
-            modelBuilder.Entity("Solid.Core.Entities.Seller", b =>
+            modelBuilder.Entity("Solid.Core.Entities.Product", b =>
                 {
-                    b.HasOne("Solid.Core.Entities.Product", "Pr")
-                        .WithMany()
-                        .HasForeignKey("PrId")
+                    b.HasOne("Solid.Core.Entities.Buyer", "Buyer")
+                        .WithOne("Product")
+                        .HasForeignKey("Solid.Core.Entities.Product", "BuyerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Pr");
+                    b.HasOne("Solid.Core.Entities.Seller", "Seller")
+                        .WithOne("Product")
+                        .HasForeignKey("Solid.Core.Entities.Product", "SellerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Buyer");
+
+                    b.Navigation("Seller");
+                });
+
+            modelBuilder.Entity("Solid.Core.Entities.Buyer", b =>
+                {
+                    b.Navigation("Product")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Solid.Core.Entities.Seller", b =>
+                {
+                    b.Navigation("Product")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

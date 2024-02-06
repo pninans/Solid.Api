@@ -11,6 +11,12 @@ namespace Solid.Core.Entities
         public int Id { get; set; }
         public string Name { get; set; }
         public string Phone { get; set; }
-        public int ProductId { get; set; }
+
+        public int SellerId { get; set; }
+        public  Seller  Seller{ get; set; }
+ 
+      
+
+
     }
 }

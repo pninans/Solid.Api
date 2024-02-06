@@ -42,7 +42,7 @@ namespace Solid.Data.Repositories
             {
                 updateSeller.Name = seller.Name;
                 updateSeller.Phone = seller.Phone;
-                updateSeller.Pr = seller.Pr;
+                updateSeller.Product = seller.Product;
                 return updateSeller;
             }
             _context.SaveChanges();
