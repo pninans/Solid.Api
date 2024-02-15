@@ -43,6 +43,10 @@ namespace Solid.Data.Repositories
                 updateProduct.Name = product.Name;
                 updateProduct.Price = product.Price;
                 updateProduct.Status = product.Status;
+                updateProduct.SellerId = product.SellerId;
+                updateProduct.Seller=product.Seller;
+                updateProduct.buyer=product.buyer;
+                updateProduct.BuyerId = product.BuyerId;
                 return updateProduct;
             }
             _context.SaveChanges();

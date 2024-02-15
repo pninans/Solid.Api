@@ -2,6 +2,10 @@
 using Solid.Core.Services;
 using Solid.Service;
 using Solid.Core.Entities;
+using Solid.API.Models;
+using Solid.Core.DTOs;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using AutoMapper;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -12,17 +16,21 @@ namespace Solid.API.Controllers
     public class SellerController : ControllerBase
     {
         private readonly ISellerService _sellerService;
+        private readonly IMapper _mapper;
 
-        public SellerController(ISellerService sellerService)
+        public SellerController(ISellerService sellerService, IMapper mapper)
         {
             _sellerService = sellerService;
+            _mapper= mapper;
         }
 
         // GET: api/<UsersController>
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_sellerService.GetSellers());
+            var listD = _sellerService.GetSellers();
+            var listDto = _mapper.Map<IEnumerable<BuyerDto>>(listD);
+            return Ok(listDto);
         }
 
         // GET api/<UsersController>/5
@@ -34,14 +42,18 @@ namespace Solid.API.Controllers
             {
                 return NotFound();
             }
-            return Ok(seller);
+            var sellerDto=_mapper.Map<SellerDto>(seller);   
+            return Ok(sellerDto);
         }
 
         // POST api/<UsersController>
         [HttpPost]
-        public void Post([FromBody] Seller value)
+        public ActionResult Post([FromBody] SellerPostModel value)
         {
-            _sellerService.AddSeller(value);
+            var sell=new Seller { Name = value.Name, Phone=value.Phone};
+            _sellerService.AddSeller(sell);
+            var sellerDto = _mapper.Map<SellerDto>(sell);
+            return Ok(sellerDto);
         }
 
         // PUT api/<UsersController>/5

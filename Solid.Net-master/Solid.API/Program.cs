@@ -1,3 +1,4 @@
+using Solid.Core.Mapping;
 using Solid.Core.Repositories;
 using Solid.Core.Services;
 using Solid.Data;
@@ -30,6 +31,9 @@ builder.Services.AddScoped<IProductService, ProductService>();
 
 builder.Services.AddDbContext<DataContext>();
 //builder.Services.AddSingleton<DataContext>();
+builder.Services.AddAutoMapper(typeof(MappingProfile));
+
+
 
 var app = builder.Build();
 
