@@ -27,18 +27,18 @@ namespace Solid.Service
         {
             return _sellerRepository.GetById(id);
         }
-        public void AddSeller(Seller seller)
+        public async Task<Seller> AddSellerAsync(Seller seller)
         {
-            seller = _sellerRepository.AddSeller(seller);
+            return await _sellerRepository.AddSellerAsync(seller);
 
         }
-        public void UpdateSeller(int id, Seller seller)
+        public async Task<Seller> UpdateSellerAsync(int id, Seller seller)
         {
-            seller = _sellerRepository.UpdateSeller(id, seller);
+             return await _sellerRepository.UpdateSellerAsync(id, seller);
         }
-        public void DeleteSeller(int id)
+        public async Task DeleteSellerAsync(int id)
         {
-            _sellerRepository.DeleteSeller(id);
+            await _sellerRepository.DeleteSellerAsync(id);
         }
 
 

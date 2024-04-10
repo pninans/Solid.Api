@@ -48,26 +48,27 @@ namespace Solid.API.Controllers
 
         // POST api/<UsersController>
         [HttpPost]
-        public ActionResult Post([FromBody] SellerPostModel value)
+        public async Task<ActionResult> Post([FromBody] SellerPostModel value)
         {
             var sell=new Seller { Name = value.Name, Phone=value.Phone};
-            _sellerService.AddSeller(sell);
-            var sellerDto = _mapper.Map<SellerDto>(sell);
+            var seller=await _sellerService.AddSellerAsync(sell);
+            var sellerDto = _mapper.Map<SellerDto>(seller);
             return Ok(sellerDto);
         }
 
         // PUT api/<UsersController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] Seller value)
+        public async Task<Seller> Put(int id, [FromBody] SellerPostModel value)
         {
-            _sellerService.UpdateSeller(id, value); 
+            var sell = new Seller { Name = value.Name, Phone = value.Phone };
+            return await _sellerService.UpdateSellerAsync(id, sell); 
         }
 
         // DELETE api/<UsersController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
-            _sellerService.DeleteSeller(id);
+            await _sellerService.DeleteSellerAsync(id);
         }
     }
 }

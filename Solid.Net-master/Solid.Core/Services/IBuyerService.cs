@@ -10,10 +10,9 @@ namespace Solid.Core.Services
     public interface IBuyerService
     {
         IEnumerable<Buyer> GetBuyers();
-
         Buyer GetById(int id);
-        void AddBuyer(Buyer buyer);
-        void UpdateBuyer(int id, Buyer buyer);
-        void DeleteBuyer(int id);
+        Task<Buyer> AddBuyerAsync(Buyer buyer);
+        Task<Buyer> UpdateBuyerAsync(int id, Buyer buyer);
+        Task DeleteBuyerAsync(int id);
     }
 }

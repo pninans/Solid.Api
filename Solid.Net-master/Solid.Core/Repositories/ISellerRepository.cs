@@ -11,8 +11,8 @@ namespace Solid.Core.Repositories
     {
         IEnumerable<Seller> GetSellers();
         Seller GetById(int id);
-        Seller AddSeller(Seller seller);
-        Seller UpdateSeller(int id, Seller seller);
-        void DeleteSeller(int id);
+        Task<Seller> AddSellerAsync(Seller seller);
+        Task<Seller> UpdateSellerAsync(int id, Seller seller);
+        Task DeleteSellerAsync(int id);
     }
 }

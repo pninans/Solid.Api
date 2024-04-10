@@ -68,11 +68,9 @@ namespace Solid.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BuyerId")
-                        .IsUnique();
+                    b.HasIndex("BuyerId");
 
-                    b.HasIndex("SellerId")
-                        .IsUnique();
+                    b.HasIndex("SellerId");
 
                     b.ToTable("ProductList");
                 });
@@ -101,32 +99,20 @@ namespace Solid.Data.Migrations
             modelBuilder.Entity("Solid.Core.Entities.Product", b =>
                 {
                     b.HasOne("Solid.Core.Entities.Buyer", "buyer")
-                        .WithOne("product")
-                        .HasForeignKey("Solid.Core.Entities.Product", "BuyerId")
+                        .WithMany()
+                        .HasForeignKey("BuyerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Solid.Core.Entities.Seller", "Seller")
-                        .WithOne("Product")
-                        .HasForeignKey("Solid.Core.Entities.Product", "SellerId")
+                        .WithMany()
+                        .HasForeignKey("SellerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Seller");
 
                     b.Navigation("buyer");
-                });
-
-            modelBuilder.Entity("Solid.Core.Entities.Buyer", b =>
-                {
-                    b.Navigation("product")
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Solid.Core.Entities.Seller", b =>
-                {
-                    b.Navigation("Product")
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

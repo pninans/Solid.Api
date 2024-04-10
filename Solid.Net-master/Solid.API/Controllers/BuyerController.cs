@@ -48,26 +48,27 @@ namespace Solid.API.Controllers
 
         // POST api/<UsersController>
         [HttpPost]
-        public ActionResult Post([FromBody] BuyerPostModel value)
+        public async Task<ActionResult> Post([FromBody] BuyerPostModel value)
         {
             var buy=new Buyer { Name=value.Name, Phone=value.Phone};
-            _buyerservice.AddBuyer(buy);
-            var buyDto = _mapper.Map<BuyerDto>(buy);
+            var buyer= await _buyerservice.AddBuyerAsync(buy);
+            var buyDto = _mapper.Map<BuyerDto>(buyer);
             return Ok(buyDto);
         }
 
         // PUT api/<UsersController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] Buyer value)
+        public async Task<Buyer> Put(int id, [FromBody] BuyerPostModel value)
         {
-            _buyerservice.UpdateBuyer(id, value);
+           var buyer=new Buyer { Name=value.Name, Phone=value.Phone};
+           return await _buyerservice.UpdateBuyerAsync(id, buyer);
         }
 
         // DELETE api/<UsersController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
-            _buyerservice.DeleteBuyer(id);
+            await _buyerservice.DeleteBuyerAsync(id);
            
         }
 

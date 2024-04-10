@@ -16,16 +16,16 @@ namespace Solid.Data.Repositories
         {
             _context = context;
         }
-        public Seller AddSeller(Seller seller)
+        public async Task<Seller> AddSellerAsync(Seller seller)
         {
             _context.SellerList.Add(seller);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return seller;
         }
-        public void DeleteSeller(int id)
+        public async Task DeleteSellerAsync(int id)
         {
             _context.SellerList.Remove(_context.SellerList.ToList().Find(u => u.Id == id));
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
         public Seller GetById(int id)
         {
@@ -35,17 +35,16 @@ namespace Solid.Data.Repositories
         {
             return _context.SellerList;
         }
-        public Seller UpdateSeller(int id, Seller seller)
+        public async Task<Seller> UpdateSellerAsync(int id, Seller seller)
         {
             var updateSeller = _context.SellerList.ToList().Find(u => u.Id == id);
             if (updateSeller != null)
             {
                 updateSeller.Name = seller.Name;
                 updateSeller.Phone = seller.Phone;
-                updateSeller.Product = seller.Product;
                 return updateSeller;
             }
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return null;
         }
 

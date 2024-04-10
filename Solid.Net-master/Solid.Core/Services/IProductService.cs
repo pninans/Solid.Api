@@ -10,10 +10,9 @@ namespace Solid.Core.Services
     public interface IProductService
     {
         IEnumerable<Product> GetProducts();
-
         Product GetById(int id);
-        void AddProduct(Product product);
-        void UpdateProduct(int id, Product product);
-        void DeleteProduct(int id);
+        Task<Product> AddProductAsync(Product product);
+        Task<Product> UpdateProductAsync(int id, Product product);
+        Task DeleteProductAsync(int id);
     }
 }

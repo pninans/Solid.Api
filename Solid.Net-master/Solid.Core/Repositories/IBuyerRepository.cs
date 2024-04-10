@@ -11,9 +11,9 @@ namespace Solid.Core.Repositories
     {
         IEnumerable<Buyer> GetBuyers();
         Buyer GetById(int id);
-        Buyer AddBuyer(Buyer buyer);
-        Buyer UpdateBuyer(int id, Buyer buyer);
-        void DeleteBuyer(int id);
+        Task<Buyer> AddBuyerAsync(Buyer buyer);
+        Task<Buyer> UpdateBuyerAsync(int id, Buyer buyer);
+        Task DeleteBuyerAsync(int id);
 
 
     }

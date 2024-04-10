@@ -29,17 +29,17 @@ namespace Solid.Service
         {
             return _buyerRepository.GetById(id);
         }
-        public void AddBuyer(Buyer buyer)
+        public async Task<Buyer> AddBuyerAsync(Buyer buyer)
         {
-            _buyerRepository.AddBuyer(buyer);
+            return await _buyerRepository.AddBuyerAsync(buyer);
         }
-        public void UpdateBuyer(int id, Buyer buyer)
+        public async Task<Buyer> UpdateBuyerAsync(int id, Buyer buyer)
         {
-            _buyerRepository.UpdateBuyer(id, buyer);
+            return await _buyerRepository.UpdateBuyerAsync(id, buyer);
         }
-        public void DeleteBuyer(int id)
+        public async Task DeleteBuyerAsync(int id)
         {
-            _buyerRepository.DeleteBuyer(id);
+            await _buyerRepository.DeleteBuyerAsync(id);
         }
 
 

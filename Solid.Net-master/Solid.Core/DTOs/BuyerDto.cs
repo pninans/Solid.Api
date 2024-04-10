@@ -13,7 +13,5 @@ namespace Solid.Core.DTOs
         public string Name { get; set; }
         public string Phone { get; set; }
 
-        public int SellerId { get; set; }
-      //  public SellerDto Seller { get; set; }
     }
 }
