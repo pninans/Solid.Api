@@ -8,5 +8,7 @@ namespace Solid.API.Models
 
         public string Phone { get; set; }
 
+    
+
     }
 }

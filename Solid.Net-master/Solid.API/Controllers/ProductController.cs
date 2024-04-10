@@ -28,7 +28,7 @@ namespace Solid.API.Controllers
         public IActionResult Get()
         {
             var listD = _productService.GetProducts();
-            var listDto = _mapper.Map<IEnumerable<BuyerDto>>(listD);
+            var listDto = _mapper.Map<IEnumerable<ProductDto>>(listD);
             return Ok(listDto);
         }
 
@@ -49,7 +49,7 @@ namespace Solid.API.Controllers
         [HttpPost]
         public ActionResult Post([FromBody] ProductPostModel value)
         {
-            var pro = new Product { Name = value.Name, Price = value.Price, SellerId = value.SellerId, Status = value.Status };
+            var pro = new Product { Name = value.Name, Price = value.Price, SellerId = value.SellerId,BuyerId=value.BuyerId, Status = value.Status };
             _productService.AddProduct(pro);
             var proDto = _mapper.Map<ProductDto>(pro);
             return Ok(proDto);

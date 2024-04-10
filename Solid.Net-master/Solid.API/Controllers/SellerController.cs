@@ -29,7 +29,7 @@ namespace Solid.API.Controllers
         public IActionResult Get()
         {
             var listD = _sellerService.GetSellers();
-            var listDto = _mapper.Map<IEnumerable<BuyerDto>>(listD);
+            var listDto = _mapper.Map<IEnumerable<SellerDto>>(listD);
             return Ok(listDto);
         }
 

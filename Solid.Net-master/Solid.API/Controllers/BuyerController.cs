@@ -50,7 +50,7 @@ namespace Solid.API.Controllers
         [HttpPost]
         public ActionResult Post([FromBody] BuyerPostModel value)
         {
-            var buy=new Buyer { Name=value.Name, Phone=value.Phone, SellerId=value.SellerId};
+            var buy=new Buyer { Name=value.Name, Phone=value.Phone};
             _buyerservice.AddBuyer(buy);
             var buyDto = _mapper.Map<BuyerDto>(buy);
             return Ok(buyDto);
