@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "4GlWu7FfbdJhvxrE9RIQdl9VgipC3eOxxx48sBPZ13F6f4OmKZnbFoV+bKDo9tTHWR5slEaTZgSy9+bu599GYA==",
+  "dgSpecHash": "cF6WVAKe2rKxezcz72t5LUgKmsekGa9ciG4Dr7U0NUBJ359dEQo2Q/APuOzG2rTi4n7qMKyZsBESWTg/cT4VIQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\user1\\Desktop\\הכל!!!!\\Solid.Api-main\\Solid.Net-master\\Solid.Service\\Solid.Service.csproj",
+  "projectFilePath": "C:\\Users\\user1\\Documents\\GitHub\\Solid.Api\\Solid.Api-main\\Solid.Net-master\\Solid.Service\\Solid.Service.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user1\\.nuget\\packages\\automapper\\13.0.0\\automapper.13.0.0.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
