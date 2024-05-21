@@ -42,10 +42,10 @@ namespace Solid.Data.Repositories
             {
                 updateSeller.Name = seller.Name;
                 updateSeller.Phone = seller.Phone;
-                return updateSeller;
+               
             }
             await _context.SaveChangesAsync();
-            return null;
+            return updateSeller;
         }
 
 
