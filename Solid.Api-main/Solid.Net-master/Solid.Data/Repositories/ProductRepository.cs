@@ -47,10 +47,10 @@ namespace Solid.Data.Repositories
                 updateProduct.Seller=product.Seller;
                 updateProduct.buyer=product.buyer;
                 updateProduct.BuyerId = product.BuyerId;
-                return updateProduct;
+                
             }
             await _context.SaveChangesAsync();
-            return null;
+            return updateProduct;
         }
     }
 }
